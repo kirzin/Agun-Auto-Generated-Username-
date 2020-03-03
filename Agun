@@ -1,0 +1,88 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+void login();
+string fn[1];
+string ln[1];
+int password[1];
+string all[1];
+string f1, f2, f3, l1, l2, l3, convert, user, pass;
+int x, y, z;
+char press;
+int main()
+{
+	system("cls");
+	cout << "$Enter Firstname:";
+	cin >> fn[0];
+	if (fn[0].length() > 10)
+	{
+		cout << "Out of range maximum of 10letters only\n";
+		system("pause");
+		return main();
+	}
+	f1 = fn[0].at(0);
+	f2 = fn[0].at(1);
+	f3 = fn[0].at(2);
+	cout << "$Enter Lastname:";
+	cin >> ln[0];
+	if (ln[0].length() > 10)
+	{
+		cout << "Out of range maximum of 10letters only\n";
+		system("pause");
+		return main();
+	}
+	reverse(ln[0].begin(), ln[0].end());
+	l1 = ln[0].at(2);
+	l2 = ln[0].at(1);
+	l3 = ln[0].at(0);
+
+	cout << "Enter Password:";
+	cin >> password[0];
+	x = password[0] % 10000;
+	y = password[0] / 10000;
+	z = x / y;
+	stringstream con;
+	con << z;
+	string str = con.str();
+	convert = con.str();
+	cout << "\n$Generated Username$:";
+	all[0] = f1 + f2 + f3 + l1 + l2 + l3 + convert;
+	cout << all[0];
+	cout << "\n$Password:";
+	cout << password[0];
+	cout << "\nPress x to Login:";
+	cin >> press;
+
+	if (press == 'x' || press == 'X')
+	{
+		login();
+	}
+	else
+	{
+		return main();
+	}
+}
+
+void login()
+{
+	system("cls");
+	cout << "Enter Generated username:";
+	cin >> user;
+	cout<<"Password Must be a number";
+	cout << "Enter Password:";
+	cin >> pass;
+
+	if (user == all[0] && password[0])
+	{
+		cout << "Login success";
+	}
+
+	else
+	{
+		cout << "wrong username or password";
+		cout<<endl;
+		system("pause");
+		main();
+	}
+}
